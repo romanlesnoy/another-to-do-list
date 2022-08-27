@@ -1,9 +1,19 @@
-import React from "react";
+import Header from "./components/Header/Header";
+import Form from "./components/AddTaskForm/AddTaskForm";
+import TodoList from "./components/TodoList/TodoList";
+import Todo from "./models/todo";
 
 function App() {
+    const todos = [
+        new Todo("learn react", true),
+        new Todo("learn typescript", false)
+    ];
+
     return (
-        <div>
-            <h1>Test</h1>
+        <div className="window">
+            <Header />
+            <Form />
+            <TodoList items={todos} />
         </div>
     );
 }
