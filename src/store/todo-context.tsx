@@ -8,9 +8,9 @@ interface Props {
 
 type TodosContextObj = {
     items: Todo[];
-    addTodo: (text: string, isDone?: boolean) => void;
+    addTodo: (text: string) => void;
     removeTodo: (id: string) => void;
-    setIsDone: (isDone: boolean) => void;
+    setIsDone: (id: string) => void;
     editTodo: (text: string) => void;
 };
 
@@ -39,8 +39,14 @@ const TodoContextProvider: React.FC<Props> = (props) => {
         });
     };
 
-    const setIsDoneHandler = (isDone: boolean) => {
-        !isDone;
+    const setIsDoneHandler = (id: string) => {
+        const updatedTodos = todos.map((todo) => {
+            if (id === todo.id) {
+                return { ...todo, isDone: !todo.isDone };
+            }
+            return todo;
+        });
+        setTodos(updatedTodos);
     };
 
     const editTodoHandler = (text: string) => {

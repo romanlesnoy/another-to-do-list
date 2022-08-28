@@ -15,6 +15,7 @@ const TodoList: React.FC = () => {
                         key={item.id}
                         text={item.text}
                         isDone={item.isDone}
+                        onCompleteTodo={todoCtx.setIsDone.bind(null, item.id)}
                     />
                 ))}
             </ul>

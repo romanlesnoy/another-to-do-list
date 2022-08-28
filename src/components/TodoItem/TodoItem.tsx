@@ -3,7 +3,11 @@ import React from "react";
 import classes from "./TodoItem.module.css";
 import EditTaskForm from "../EditTaskForm/EditTaskForm";
 
-const TaskItem: React.FC<{ text: string; isDone: boolean }> = (props) => {
+const TodoItem: React.FC<{
+    text: string;
+    isDone: boolean;
+    onCompleteTodo: () => void;
+}> = (props) => {
     return (
         <li>
             <article>
@@ -17,6 +21,7 @@ const TaskItem: React.FC<{ text: string; isDone: boolean }> = (props) => {
                             id="task_done"
                             type="checkbox"
                             checked={props.isDone}
+                            onChange={() => props.onCompleteTodo()}
                         />
                         Done
                     </label>
@@ -28,4 +33,4 @@ const TaskItem: React.FC<{ text: string; isDone: boolean }> = (props) => {
     );
 };
 
-export default TaskItem;
+export default TodoItem;
