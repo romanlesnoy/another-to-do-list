@@ -2,6 +2,10 @@ import React, { useState } from "react";
 
 import Todo from "../models/todo";
 
+interface Props {
+    children: React.ReactNode;
+}
+
 type TodosContextObj = {
     items: Todo[];
     addTodo: (text: string, isDone?: boolean) => void;
@@ -10,18 +14,18 @@ type TodosContextObj = {
     editTodo: (text: string) => void;
 };
 
-const TodoContext = React.createContext<TodosContextObj>({
+export const TodoContext = React.createContext<TodosContextObj>({
     items: [],
     addTodo: () => {},
-    setIsDone: (isDone: boolean) => {},
-    removeTodo: (id: string) => {},
+    setIsDone: () => {},
+    removeTodo: () => {},
     editTodo: () => {}
 });
 
-const TodoContextProvider: React.FC = (props) => {
+const TodoContextProvider: React.FC<Props> = (props) => {
     const [todos, setTodos] = useState<Todo[]>([]);
 
-    const addTodoHandler = (todoText: string, isDone: boolean = false) => {
+    const addTodoHandler = (todoText: string, isDone = false) => {
         const newTodo = new Todo(todoText, isDone);
 
         setTodos((prevTodos) => {
@@ -39,13 +43,23 @@ const TodoContextProvider: React.FC = (props) => {
         !isDone;
     };
 
+    const editTodoHandler = (text: string) => {
+        console.log(text);
+    };
+
     const contextValue: TodosContextObj = {
         items: todos,
         addTodo: addTodoHandler,
-        removeTodo: removeTodoHandler
+        removeTodo: removeTodoHandler,
+        setIsDone: setIsDoneHandler,
+        editTodo: editTodoHandler
     };
 
-    return <TodoContext.Provider>{props.children}</TodoContext.Provider>;
+    return (
+        <TodoContext.Provider value={contextValue}>
+            {props.children}
+        </TodoContext.Provider>
+    );
 };
 
-export default TodosContextProvider;
+export default TodoContextProvider;

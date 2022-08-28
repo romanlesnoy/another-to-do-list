@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import classes from "./TodoList.module.css";
 import TodoItem from "../TodoItem/TodoItem";
-import Todo from "../../models/todo";
+import { TodoContext } from "../../store/todo-context";
 
-const TodoList: React.FC<{ items: Todo[] }> = (props) => {
+const TodoList: React.FC = () => {
+    const todoCtx = useContext(TodoContext);
+
     return (
         <section>
             <ul className={classes.list}>
-                {props.items.map((item) => (
+                {todoCtx.items.map((item) => (
                     <TodoItem
                         key={item.id}
                         text={item.text}
