@@ -3,8 +3,7 @@ import React, { useContext } from "react";
 import classes from "./AddTaskForm.module.css";
 import { TodoContext } from "../../store/todo-context";
 import useInput from "../../hooks/use-input";
-
-const isEmpty = (value: string) => value.trim() !== "";
+import { isEmpty } from "../../helpers/inputValidatior";
 
 const Form = () => {
     const todoCtx = useContext(TodoContext);
