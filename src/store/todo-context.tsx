@@ -11,7 +11,7 @@ type TodosContextObj = {
     addTodo: (text: string) => void;
     removeTodo: (id: string) => void;
     setIsDone: (id: string) => void;
-    editTodo: (text: string) => void;
+    editTodo: (id: string, text: string) => void;
 };
 
 export const TodoContext = React.createContext<TodosContextObj>({
@@ -49,8 +49,14 @@ const TodoContextProvider: React.FC<Props> = (props) => {
         setTodos(updatedTodos);
     };
 
-    const editTodoHandler = (text: string) => {
-        console.log(text);
+    const editTodoHandler = (id: string, text: string) => {
+        const editedTodoList = todos.map((todo) => {
+            if (id === todo.id) {
+                return { ...todo, text: text };
+            }
+            return todo;
+        });
+        setTodos(editedTodoList);
     };
 
     const contextValue: TodosContextObj = {

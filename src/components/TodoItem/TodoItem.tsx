@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import classes from "./TodoItem.module.css";
 import EditTaskForm from "../EditTaskForm/EditTaskForm";
+import { TodoContext } from "../../store/todo-context";
 
 const TodoItem: React.FC<{
+    id: string;
     text: string;
     isDone: boolean;
-    onCompleteTodo: () => void;
 }> = (props) => {
+    const todoCtx = useContext(TodoContext);
+
     return (
         <li>
             <article>
@@ -21,13 +24,13 @@ const TodoItem: React.FC<{
                             id="task_done"
                             type="checkbox"
                             checked={props.isDone}
-                            onChange={() => props.onCompleteTodo()}
+                            onChange={() => todoCtx.setIsDone(props.id)}
                         />
                         Done
                     </label>
                 </div>
 
-                <EditTaskForm />
+                <EditTaskForm id={props.id} onEditTask={todoCtx.editTodo} />
             </article>
         </li>
     );
