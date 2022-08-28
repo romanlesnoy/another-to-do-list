@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import classes from "./TodoItem.module.css";
 import EditTaskForm from "../EditTaskForm/EditTaskForm";
@@ -11,6 +11,12 @@ const TodoItem: React.FC<{
 }> = (props) => {
     const todoCtx = useContext(TodoContext);
 
+    const [isEditing, setIsediting] = useState(false);
+
+    const showEditFormHandler = () => {
+        setIsediting(!isEditing);
+    };
+
     return (
         <li>
             <article>
@@ -18,7 +24,6 @@ const TodoItem: React.FC<{
                     <h2 className={props.isDone ? classes.done : ""}>
                         {props.text}
                     </h2>
-                    <button type="button">Edit</button>
                     <label htmlFor="task_done" className={classes.label}>
                         <input
                             id="task_done"
@@ -28,9 +33,20 @@ const TodoItem: React.FC<{
                         />
                         Done
                     </label>
+                    {!isEditing && (
+                        <button type="button" onClick={showEditFormHandler}>
+                            Edit
+                        </button>
+                    )}
                 </div>
 
-                <EditTaskForm id={props.id} onEditTask={todoCtx.editTodo} />
+                {isEditing && (
+                    <EditTaskForm
+                        id={props.id}
+                        onEditTask={todoCtx.editTodo}
+                        onCancel={showEditFormHandler}
+                    />
+                )}
             </article>
         </li>
     );

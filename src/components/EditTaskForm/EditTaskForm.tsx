@@ -7,6 +7,7 @@ import { isEmpty } from "../../helpers/inputValidatior";
 const EditTaskForm: React.FC<{
     id: string;
     onEditTask: (id: string, text: string) => void;
+    onCancel: () => void;
 }> = (props) => {
     const {
         value: enteredText,
@@ -30,6 +31,7 @@ const EditTaskForm: React.FC<{
 
     const cancelHandler = () => {
         resetTextInput();
+        props.onCancel();
     };
 
     return (
