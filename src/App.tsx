@@ -7,8 +7,10 @@ function App() {
     return (
         <TodosContextProvider>
             <Header />
-            <Form />
-            <TodoList />
+            <main>
+                <Form />
+                <TodoList />
+            </main>
         </TodosContextProvider>
     );
 }

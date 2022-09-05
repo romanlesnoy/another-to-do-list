@@ -1,6 +1,5 @@
 import React from "react";
 
-import classes from "./EditTaskForm.module.css";
 import useInput from "../../hooks/use-input";
 import { isEmpty } from "../../helpers/inputValidatior";
 
@@ -33,19 +32,19 @@ const EditTaskForm: React.FC<{
     };
 
     return (
-        <form className={classes.form} onSubmit={submitHandler}>
-            <div className={classes.container}>
+        <form className="flex-column" onSubmit={submitHandler}>
+            <div className="flex-row">
                 <label htmlFor="edit_task">Edit Task: </label>
                 <input
                     id="edit_task"
                     type="text"
                     placeholder="Task"
-                    className={classes.input}
+                    className="input"
                     onChange={textChangeHandler}
                     value={enteredText}
                 />
             </div>
-            <div className={classes.button}>
+            <div className="buttons-container">
                 <button type="button" onClick={cancelHandler}>
                     Cancel
                 </button>

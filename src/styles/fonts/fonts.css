@@ -2,16 +2,8 @@
     font-family: Chicago;
     src: url("./ChicagoFLF.ttf");
 }
-@font-face {
-    font-family: Monaco;
-    src: url("./monaco.ttf");
-}
 
 @font-face {
     font-family: Chicago_12;
     src: url("./ChiKareGo2.ttf");
-}
-@font-face {
-    font-family: Geneva_9;
-    src: url("./FindersKeepers.ttf");
 }

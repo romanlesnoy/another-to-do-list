@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 
-import classes from "./TodoItem.module.css";
 import EditTaskForm from "../EditTaskForm/EditTaskForm";
 import { TodoContext } from "../../store/todo-context";
 
@@ -19,29 +18,36 @@ const TodoItem: React.FC<{
 
     return (
         <li>
-            <article>
-                <div className={classes.container}>
+            <article className="flex-column">
+                <div className="flex-row">
+                    <input
+                        id={`task-${props.id}`}
+                        type="checkbox"
+                        checked={props.isDone}
+                        onChange={() => todoCtx.setIsDone(props.id)}
+                    />
                     <label
                         htmlFor={`task-${props.id}`}
-                        className={props.isDone ? classes.done : ""}
+                        className={props.isDone ? "todo-done" : ""}
                     >
-                        <input
-                            id={`task-${props.id}`}
-                            type="checkbox"
-                            checked={props.isDone}
-                            onChange={() => todoCtx.setIsDone(props.id)}
-                        />
                         {props.text}
                     </label>
                 </div>
 
-                <div>
-                    {!isEditing && (
+                {!isEditing && (
+                    <div className="buttons-container">
+                        <button
+                            type="button"
+                            onClick={() => todoCtx.removeTodo(props.id)}
+                        >
+                            Delete
+                        </button>
+
                         <button type="button" onClick={showEditFormHandler}>
                             Edit
                         </button>
-                    )}
-                </div>
+                    </div>
+                )}
 
                 {isEditing && (
                     <EditTaskForm

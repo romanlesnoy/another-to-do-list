@@ -33,9 +33,9 @@ const TodoContextProvider: React.FC<Props> = (props) => {
         });
     };
 
-    const removeTodoHandler = (todoId: string) => {
+    const removeTodoHandler = (id: string) => {
         setTodos((prevTodos) => {
-            return prevTodos.filter((todo) => todo.id !== todoId);
+            return prevTodos.filter((todo) => todo.id !== id);
         });
     };
 
