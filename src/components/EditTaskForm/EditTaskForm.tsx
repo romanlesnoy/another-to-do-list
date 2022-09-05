@@ -42,6 +42,7 @@ const EditTaskForm: React.FC<{
                     className="input"
                     onChange={textChangeHandler}
                     value={enteredText}
+                    autoComplete="off"
                 />
             </div>
             <div className="buttons-container">

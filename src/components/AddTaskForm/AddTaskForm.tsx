@@ -41,6 +41,7 @@ const Form = () => {
                         className="input"
                         onChange={textChangeHandler}
                         value={enteredText}
+                        autoComplete="off"
                     />
                 </div>
 
