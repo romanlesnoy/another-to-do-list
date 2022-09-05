@@ -21,18 +21,21 @@ const TodoItem: React.FC<{
         <li>
             <article>
                 <div className={classes.container}>
-                    <h2 className={props.isDone ? classes.done : ""}>
-                        {props.text}
-                    </h2>
-                    <label htmlFor="task_done" className={classes.label}>
+                    <label
+                        htmlFor={`task-${props.id}`}
+                        className={props.isDone ? classes.done : ""}
+                    >
                         <input
-                            id="task_done"
+                            id={`task-${props.id}`}
                             type="checkbox"
                             checked={props.isDone}
                             onChange={() => todoCtx.setIsDone(props.id)}
                         />
-                        Done
+                        {props.text}
                     </label>
+                </div>
+
+                <div>
                     {!isEditing && (
                         <button type="button" onClick={showEditFormHandler}>
                             Edit
