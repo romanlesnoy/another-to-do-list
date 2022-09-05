@@ -12,9 +12,7 @@ const EditTaskForm: React.FC<{
     const {
         value: enteredText,
         isValid: enteredTextIsValid,
-        hasError: textInputHasError,
         valueChangeHandler: textChangeHandler,
-        inputBlurHandler: textBlurHandler,
         reset: resetTextInput
     } = useInput(isEmpty);
 
@@ -44,16 +42,16 @@ const EditTaskForm: React.FC<{
                     placeholder="Task"
                     className={classes.input}
                     onChange={textChangeHandler}
-                    onBlur={textBlurHandler}
                     value={enteredText}
                 />
             </div>
-            {textInputHasError && <span>This field must not be empty</span>}
             <div className={classes.button}>
                 <button type="button" onClick={cancelHandler}>
                     Cancel
                 </button>
-                <button type="submit">OK</button>
+                <button type="submit" disabled={!enteredTextIsValid}>
+                    OK
+                </button>
             </div>
         </form>
     );

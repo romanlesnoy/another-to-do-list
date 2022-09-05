@@ -11,9 +11,7 @@ const Form = () => {
     const {
         value: enteredText,
         isValid: enteredTextIsValid,
-        hasError: textInputHasError,
         valueChangeHandler: textChangeHandler,
-        inputBlurHandler: textBlurHandler,
         reset: resetTextInput
     } = useInput(isEmpty);
 
@@ -41,11 +39,10 @@ const Form = () => {
                         placeholder="Task"
                         className={classes.input}
                         onChange={textChangeHandler}
-                        onBlur={textBlurHandler}
                         value={enteredText}
                     />
                 </div>
-                {textInputHasError && <span>This field must not be empty</span>}
+
                 <div className={classes.button}>
                     <button type="submit" disabled={!enteredTextIsValid}>
                         Submit
