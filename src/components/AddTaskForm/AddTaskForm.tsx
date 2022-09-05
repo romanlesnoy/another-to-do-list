@@ -26,6 +26,10 @@ const Form = () => {
         resetTextInput();
     };
 
+    const cancelHandler = () => {
+        resetTextInput();
+    };
+
     return (
         <section>
             <form className={classes.form} onSubmit={submitHandler}>
@@ -44,6 +48,13 @@ const Form = () => {
                 </div>
 
                 <div className={classes.button}>
+                    <button
+                        type="button"
+                        onClick={cancelHandler}
+                        disabled={!enteredTextIsValid}
+                    >
+                        Cancel
+                    </button>
                     <button type="submit" disabled={!enteredTextIsValid}>
                         Submit
                     </button>
