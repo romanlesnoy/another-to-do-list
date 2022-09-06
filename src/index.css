@@ -31,13 +31,18 @@ body {
     box-shadow: 2px 2px;
 }
 
+h2 {
+    font-family: Chicago;
+    font-size: 1em;
+}
+
 main {
     padding: 20px 10px;
     background-color: #fff;
 
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 24px;
 }
 
 label {
@@ -152,10 +157,6 @@ input {
     padding-left: 5px;
 }
 
-input:focus {
-    outline: none;
-}
-
 /* Checkbox*/
 
 input[type="checkbox"] + label::before {
@@ -196,7 +197,7 @@ input[type="checkbox"] + label::before {
 }
 
 input[type="checkbox"]:focus-visible + label::before {
-    outline: 1px solid black;
+    outline: 1px solid blue;
 }
 
 input[type="checkbox"]:checked + label::after {
