@@ -53,7 +53,7 @@ const TodoItem: React.FC<{
                     <EditTaskForm
                         id={props.id}
                         onEditTask={todoCtx.editTodo}
-                        onCancel={showEditFormHandler}
+                        onToggleShowForm={showEditFormHandler}
                     />
                 )}
             </article>
