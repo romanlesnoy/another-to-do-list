@@ -8,7 +8,7 @@ const TodoList: React.FC = () => {
 
     return (
         <section>
-            <ul className="flex-column">
+            <ul className="flex-column" aria-labelledby="list-heading">
                 {todoCtx.items.map((item) => (
                     <TodoItem
                         key={item.id}

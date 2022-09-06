@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 
 import EditTaskForm from "../EditTaskForm/EditTaskForm";
 import { TodoContext } from "../../store/todo-context";
+import usePrevious from "../../hooks/use-previous";
 
 const TodoItem: React.FC<{
     id: string;
@@ -11,6 +12,19 @@ const TodoItem: React.FC<{
     const todoCtx = useContext(TodoContext);
 
     const [isEditing, setIsediting] = useState(false);
+
+    const editFieldRef = useRef<HTMLInputElement>(null);
+    const editButtonRef = useRef<HTMLButtonElement>(null);
+    const wasEditing = usePrevious(isEditing);
+
+    useEffect(() => {
+        if (!wasEditing && isEditing) {
+            editFieldRef.current?.focus();
+        }
+        if (wasEditing && !isEditing) {
+            editButtonRef.current?.focus();
+        }
+    }, [isEditing, wasEditing]);
 
     const showEditFormHandler = () => {
         setIsediting(!isEditing);
@@ -43,7 +57,12 @@ const TodoItem: React.FC<{
                             Delete
                         </button>
 
-                        <button type="button" onClick={showEditFormHandler}>
+                        <button
+                            type="button"
+                            onClick={showEditFormHandler}
+                            aria-pressed="false"
+                            ref={editButtonRef}
+                        >
                             Edit
                         </button>
                     </div>
@@ -54,6 +73,7 @@ const TodoItem: React.FC<{
                         id={props.id}
                         onEditTask={todoCtx.editTodo}
                         onToggleShowForm={showEditFormHandler}
+                        inputRefProp={editFieldRef}
                     />
                 )}
             </article>

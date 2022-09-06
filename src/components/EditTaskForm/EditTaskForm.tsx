@@ -7,6 +7,7 @@ const EditTaskForm: React.FC<{
     id: string;
     onEditTask: (id: string, text: string) => void;
     onToggleShowForm: () => void;
+    inputRefProp: React.RefObject<HTMLInputElement>;
 }> = (props) => {
     const {
         value: enteredText,
@@ -44,6 +45,7 @@ const EditTaskForm: React.FC<{
                     onChange={textChangeHandler}
                     value={enteredText}
                     autoComplete="off"
+                    ref={props.inputRefProp}
                 />
             </div>
             <div className="buttons-container">
